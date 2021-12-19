@@ -1,9 +1,20 @@
-import { Controller, Delete, Get, Patch, Put } from '@nestjs/common';
+import { HttpExceptionFilter } from './../http-exception.filter';
+import {
+  Controller,
+  Delete,
+  Get,
+  HttpException,
+  Patch,
+  Put,
+  UseFilters,
+} from '@nestjs/common';
 
 @Controller('cats')
 export class CatsController {
   @Get()
   getAllCat() {
+    throw new HttpException('error test', 400);
+
     return 'all cat';
   }
 
