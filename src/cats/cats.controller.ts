@@ -1,3 +1,4 @@
+import { PositiveIntPipe } from './../common/pipes/positiveInt.pipe';
 import {
   Controller,
   Delete,
@@ -16,9 +17,8 @@ export class CatsController {
   }
 
   @Get(':id')
-  getOneCat(@Param('id', ParseIntPipe) id: number) {
-    console.log(id);
-    console.log(typeof id);
+  getOneCat(@Param('id', ParseIntPipe, PositiveIntPipe) id: number) {
+    console.log(`id is ${id}`);
 
     return 'one cat';
   }
