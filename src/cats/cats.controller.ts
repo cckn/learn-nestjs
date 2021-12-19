@@ -1,43 +1,31 @@
 import { LoggingInterceptor } from './../common/interceptors/success.interceptor';
-import { PositiveIntPipe } from './../common/pipes/positiveInt.pipe';
-import {
-  Controller,
-  Delete,
-  Get,
-  Param,
-  ParseIntPipe,
-  Patch,
-  Put,
-  UseInterceptors,
-} from '@nestjs/common';
+import { Controller, Get, Post, UseInterceptors } from '@nestjs/common';
 
 @Controller('cats')
 @UseInterceptors(LoggingInterceptor)
 export class CatsController {
   @Get()
-  getAllCat() {
-    return 'all cat';
+  getCurrentCat() {
+    return 'getCurrentCat';
   }
 
-  @Get(':id')
-  getOneCat(@Param('id', ParseIntPipe, PositiveIntPipe) id: number) {
-    console.log(`id is ${id}`);
-
-    return { cat: 'one cat' };
+  @Get()
+  signUp() {
+    return 'signUp';
   }
 
-  @Put(':id')
-  updateCat() {
-    return 'update cat';
+  @Get()
+  logIn() {
+    return 'logIn';
   }
 
-  @Patch(':id')
-  updatePartialCat() {
-    return 'update partial cat';
+  @Get()
+  logOut() {
+    return 'logOut';
   }
 
-  @Delete(':id')
-  deleteCat() {
-    return 'delete cat';
+  @Post()
+  uploadCatImg() {
+    return 'uploadCatImg';
   }
 }
