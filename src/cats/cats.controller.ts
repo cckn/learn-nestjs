@@ -1,25 +1,25 @@
-import { HttpExceptionFilter } from './../http-exception.filter';
 import {
   Controller,
   Delete,
   Get,
-  HttpException,
+  Param,
+  ParseIntPipe,
   Patch,
   Put,
-  UseFilters,
 } from '@nestjs/common';
 
 @Controller('cats')
 export class CatsController {
   @Get()
   getAllCat() {
-    throw new HttpException('error test', 400);
-
     return 'all cat';
   }
 
   @Get(':id')
-  getOneCat() {
+  getOneCat(@Param('id', ParseIntPipe) id: number) {
+    console.log(id);
+    console.log(typeof id);
+
     return 'one cat';
   }
 
