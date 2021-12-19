@@ -1,3 +1,4 @@
+import { LoggingInterceptor } from './../common/interceptors/success.interceptor';
 import { PositiveIntPipe } from './../common/pipes/positiveInt.pipe';
 import {
   Controller,
@@ -7,9 +8,11 @@ import {
   ParseIntPipe,
   Patch,
   Put,
+  UseInterceptors,
 } from '@nestjs/common';
 
 @Controller('cats')
+@UseInterceptors(LoggingInterceptor)
 export class CatsController {
   @Get()
   getAllCat() {
@@ -20,7 +23,7 @@ export class CatsController {
   getOneCat(@Param('id', ParseIntPipe, PositiveIntPipe) id: number) {
     console.log(`id is ${id}`);
 
-    return 'one cat';
+    return { cat: 'one cat' };
   }
 
   @Put(':id')
